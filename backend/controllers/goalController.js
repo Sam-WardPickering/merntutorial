@@ -3,15 +3,18 @@
 // @access Private
 const getGoals = (req, res) => {
     res.status(200).json({ message: 'Get goals'})
-
 }
 
 // @desc Set goals
 // @route POST /api/goals
 // @access Private
 const setGoal = (req, res) => {
-    res.status(200).json({ message: 'Set goal'})
+    if(!req.body.text) {
+        res.status(400)
+        throw new Error('Please add a text field')
+    }
 
+    res.status(200).json({ message: 'Set goal'})
 }
 
 // @desc Update goal
@@ -19,7 +22,6 @@ const setGoal = (req, res) => {
 // @access Private
 const updateGoal = (req, res) => {
     res.status(200).json({ message: `Update goal ${req.params.id}`})
-
 }
 
 // @desc Delete goal
@@ -27,7 +29,6 @@ const updateGoal = (req, res) => {
 // @access Private
 const deleteGoal = (req, res) => {
     res.status(200).json({ message: `Delete goal ${req.params.id}`})
-
 }
 
 module.exports = {
